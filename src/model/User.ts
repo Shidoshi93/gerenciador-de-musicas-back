@@ -4,7 +4,7 @@ export class User {
         private name: string,
         private email: string,
         private password: string,
-        private role: UserRole
+        private nickname: string
     ) { }
 
     getId() {
@@ -23,8 +23,8 @@ export class User {
         return this.password;
     }
 
-    getRole() {
-        return this.role;
+    getNickname() {
+        return this.nickname;
     }
 
     setId(id: string) {
@@ -43,8 +43,8 @@ export class User {
         this.password = password;
     }
 
-    setRole(role: UserRole) {
-        this.role = role;
+    setNickname(nickname: string) {
+        this.nickname = nickname;
     }
 
     static stringToUserRole(input: string): UserRole {
@@ -59,7 +59,7 @@ export class User {
     }
 
     static toUserModel(user: any): User {
-        return new User(user.id, user.user_name, user.email, user.password, User.stringToUserRole(user.role));
+        return new User(user.id, user.user_name, user.email, user.password, user.nickname);
     }
 }
 
@@ -67,7 +67,7 @@ export interface UserInputDTO {
     email: string;
     password: string;
     user_name: string;
-    role: string;
+    nickname: string;
 }
 
 export interface LoginInputDTO {

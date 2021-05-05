@@ -15,10 +15,10 @@ export class UserBusiness {
         const hashPassword = await hashManager.hash(user.password);
 
         const userDatabase = new UserDatabase();
-        await userDatabase.createUser(id, user.email, user.user_name, hashPassword, user.role);
+        await userDatabase.createUser(id, user.email, user.user_name, hashPassword, user.nickname);
 
         const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id, role: user.role });
+        const accessToken = authenticator.generateToken({ id });
 
         return accessToken;
     }
@@ -32,7 +32,7 @@ export class UserBusiness {
         const hashCompare = await hashManager.compare(user.password, userFromDB.getPassword());
 
         const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id: userFromDB.getId(), role: userFromDB.getRole() });
+        const accessToken = authenticator.generateToken({ id: userFromDB.getId() });
 
         if (!hashCompare) {
             throw new Error("Invalid Password!");

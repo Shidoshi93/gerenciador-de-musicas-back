@@ -11,7 +11,7 @@ export class UserController {
                 email: req.body.email,
                 user_name: req.body.name,
                 password: req.body.password,
-                role: req.body.role
+                nickname: req.body.nickname
             }
 
             const userBusiness = new UserBusiness();
