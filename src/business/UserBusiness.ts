@@ -15,7 +15,7 @@ export class UserBusiness {
         const hashPassword = await hashManager.hash(user.password);
 
         const userDatabase = new UserDatabase();
-        await userDatabase.createUser(id, user.email, user.user_name, hashPassword, user.nickname);
+        await userDatabase.createUser(id, user.user_name, user.email, hashPassword, user.nickname);
 
         const authenticator = new Authenticator();
         const accessToken = authenticator.generateToken({ id });

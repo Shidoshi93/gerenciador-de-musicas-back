@@ -41,7 +41,7 @@ export class UserController {
             res.status(200).send({ token });
 
         } catch (error) {
-            res.status(400).send({ error: error.message });
+            res.status(400).send({ error: "deu ruim" /* error.message */ });
         }
 
         await BaseDatabase.destroyConnection();

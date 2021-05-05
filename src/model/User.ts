@@ -1,6 +1,6 @@
 export class User {
     constructor(
-        private id: string,
+        private user_id: string,
         private name: string,
         private email: string,
         private password: string,
@@ -8,7 +8,7 @@ export class User {
     ) { }
 
     getId() {
-        return this.id;
+        return this.user_id;
     }
 
     getName() {
@@ -27,8 +27,8 @@ export class User {
         return this.nickname;
     }
 
-    setId(id: string) {
-        this.id = id;
+    setId(user_id: string) {
+        this.user_id = user_id;
     }
 
     setName(name: string) {
@@ -59,7 +59,7 @@ export class User {
     }
 
     static toUserModel(user: any): User {
-        return new User(user.id, user.user_name, user.email, user.password, user.nickname);
+        return new User(user.user_id, user.user_name, user.email, user.password, user.nickname);
     }
 }
 
