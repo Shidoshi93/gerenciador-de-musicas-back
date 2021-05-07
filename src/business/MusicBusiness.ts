@@ -1,7 +1,4 @@
-import { UserInputDTO, LoginInputDTO } from "../model/User";
-import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
-import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
 import { MusicInputDTO } from "../model/Music";
 import { MusicDatabase } from "../data/MusicDatabase";
@@ -16,7 +13,7 @@ export class MusicBusiness {
         const id = idGenerator.generate();
 
         const auth = new Authenticator()
-        const user_id = auth.getData(token)
+        const user_id = auth.getData(token).id
 
         const musicDatabase = new MusicDatabase();
         await musicDatabase.addMusic(
@@ -25,7 +22,7 @@ export class MusicBusiness {
             music.author,
             music.file,
             music.album,
-            String(user_id.id)
+            String(user_id)
         );
 
         const authenticator = new Authenticator();
@@ -34,21 +31,19 @@ export class MusicBusiness {
         return accessToken;
     }
 
-    /* public async getUserByEmail(user: LoginInputDTO) {
+    public async getAllmusics(token: string) {
+        try {
+            if (!token) throw new Error('Invalid token')
 
-        const userDatabase = new UserDatabase();
-        const userFromDB = await userDatabase.getUserByEmail(user.email);
+            const auth = new Authenticator()
+            const user_id = auth.getData(token).id
 
-        const hashManager = new HashManager();
-        const hashCompare = await hashManager.compare(user.password, userFromDB.getPassword());
-
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id: userFromDB.getId() });
-
-        if (!hashCompare) {
-            throw new Error("Invalid Password!");
+            const musicDatabase = new MusicDatabase()
+            const result = await musicDatabase.getAllMusics(user_id)
+    
+            return result
+        } catch (error) {
+            console.log(error.message)
         }
-
-        return accessToken;
-    } */
+    }
 }

@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { UserInputDTO, LoginInputDTO} from "../model/User";
-import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
 import { MusicInputDTO } from "../model/Music";
 import { MusicBusiness } from "../business/MusicBusiness";
@@ -30,5 +28,17 @@ export class MusicController {
         await BaseDatabase.destroyConnection();
     }
 
+    public async getAllMusics(req: Request, res: Response) {
+        try {
+            const inputToken = req.headers.authorization as string
+
+            const musicBusiness = new MusicBusiness();
+            const result = await musicBusiness.getAllmusics(inputToken)
+
+            res.status(200).send({musics: result})
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+    }
 
 }
