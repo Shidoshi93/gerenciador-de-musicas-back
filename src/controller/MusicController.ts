@@ -41,4 +41,18 @@ export class MusicController {
         }
     }
 
+    public async getMusic(req: Request, res: Response) {
+        try {
+            const inputToken = req.headers.authorization as string
+            const music_id = req.params.id as string
+            
+            const musicBusiness = new MusicBusiness();
+            const result = await musicBusiness.getMusic(inputToken, music_id)
+
+            res.status(200).send({musics: result})
+        } catch (error) {
+            res.status(400).send({ error: error.message });
+        }
+    }
+
 }

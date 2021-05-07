@@ -46,4 +46,21 @@ export class MusicBusiness {
             console.log(error.message)
         }
     }
+
+    public async getMusic(token: string, music_id: string) {
+        try {
+            if (!token) throw new Error('Invalid token')
+            if (!music_id) throw new Error('Invalid music_id')
+
+            /* const auth = new Authenticator()
+            const user_id = auth.getData(token).id */
+
+            const musicDatabase = new MusicDatabase()
+            const result = await musicDatabase.getMusics(music_id)
+    
+            return result
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
 }

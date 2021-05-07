@@ -43,4 +43,18 @@ export class MusicDatabase extends BaseDatabase {
     }
   }
 
+  public async getMusics(music_id: string): Promise<string[]> {
+    try {
+      const result = await this.getConnection().raw(`
+        SELECT *
+        FROM ${MusicDatabase.TABLE_NAME}
+        WHERE music_id = "${music_id}"
+      `)
+      
+      return result[0]
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
+
 }
