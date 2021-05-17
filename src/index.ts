@@ -16,13 +16,12 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins
 }; */
 
-app.use(cors({origin: "http://localhost:3000", 
-optionsSuccessStatus: 200}))
+app.use(cors())
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/music", musicRouter)
 
-const server = app.listen(3003, () => {
+const server = app.listen(process.env.PORT || 3003, () => {
   if (server) {
     const address = server.address() as AddressInfo;
     console.log(`Servidor rodando em http://localhost:${address.port}`);
