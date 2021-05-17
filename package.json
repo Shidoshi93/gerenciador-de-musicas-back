@@ -1,7 +1,7 @@
 {
-  "name": "lama-template",
+  "name": "music-manager",
   "version": "1.0.0",
-  "description": "Template para o projeto LAMA",
+  "description": "gerenciador de músicas - back",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,10 +9,6 @@
     "dev": "clear && ts-node-dev ./src/index.ts",
     "create-tables": "clear && ts-node-dev ./src/data/CreateTables/CreateTables.ts"
   },
-  "keywords": [
-    "api",
-    "lama"
-  ],
   "author": "Daniel Ribeiro",
   "license": "ISC",
   "dependencies": {
@@ -21,6 +17,8 @@
     "@types/jest": "^25.2.3",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/knex": "^0.16.1",
+    "@types/cors": "^2.8.10",
+    "@types/uuid": "^8.3.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -33,9 +31,5 @@
     "ts-jest": "^26.1.0",
     "ts-node-dev": "^1.1.6",
     "typescript": "^3.9.6"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.10",
-    "@types/uuid": "^8.3.0"
   }
 }
