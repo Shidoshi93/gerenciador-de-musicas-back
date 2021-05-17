@@ -5,9 +5,18 @@ import { userRouter } from "./routes/userRouter";
 import { musicRouter } from "./routes/MusicRouter";
 import cors from "cors";
 
+
+
 dotenv.config();
 const app = express();
-app.use(cors())
+
+const allowedOrigins = ['http://ec2-54-227-9-73.compute-1.amazonaws.com:3003'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
+app.use(cors(options))
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/music", musicRouter)
