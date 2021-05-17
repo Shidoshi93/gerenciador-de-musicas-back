@@ -16,7 +16,7 @@ const options: cors.CorsOptions = {
   origin: allowedOrigins
 }; */
 
-app.use(cors({origin: "http://localhost:3003", 
+app.use(cors({origin: "http://localhost:3000", 
 optionsSuccessStatus: 200}))
 app.use(express.json());
 app.use("/user", userRouter);
