@@ -10,13 +10,14 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = ['http://ec2-54-227-9-73.compute-1.amazonaws.com:3003'];
+/* const allowedOrigins = ['http://localhost:3003'];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins
-};
+}; */
 
-app.use(cors(options))
+app.use(cors({origin: "http://localhost:3003", 
+optionsSuccessStatus: 200}))
 app.use(express.json());
 app.use("/user", userRouter);
 app.use("/music", musicRouter)
